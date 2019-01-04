@@ -1,0 +1,7 @@
+{% if attribute(obj,attributeName) is not null %}
+    <img alt="image" class="img-circle" src="{{asset(obj.getWebPath)}}" onError="this.src='{{asset('assets/img/default-user.png')}}';" style="width:46px" />
+{% else %}
+    {# we have to choose default piv to display here #}
+    <center><img alt="image" class="img-circle" src="{{asset('assets/img/default-user.png')}}" style="width:46px" /></center>
+
+{% endif %}

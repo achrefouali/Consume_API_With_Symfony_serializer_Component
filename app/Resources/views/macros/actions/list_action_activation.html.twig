@@ -1,0 +1,12 @@
+ {% set activation = obj.enabled?'disable':'enable' %}
+    <a
+            class="btn btn-sm btn-white delete-object"
+            title="{{ activation|trans({},'ApplicationCoreBundle') }}"
+            data-toggle="tooltip"
+            rel="tooltip"
+            href="javascript:void(0)"
+            data-url="{{path(key, {'id': obj.id,'activation':activation})}}"
+            data-originalconfirm="{{ ('core.message.confirm.'~activation)|trans({'%obj%': obj},translationDomain) }}"
+            data-csrf-token="{{ path(key, {'id': obj.id,'activation':activation})|csrf_token }}" >
+        <i class="fa {% if activation =='enable'%}fa-unlock{% else %}fa-lock{% endif %} "></i>
+    </a>

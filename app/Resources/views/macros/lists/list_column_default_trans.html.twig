@@ -1,0 +1,13 @@
+{# This inclusion allow to pass another translation can be extended with trans({array passed})
+exemple : pathTo = visa.parameters.list.
+domain : notreal.fr.yml
+the returned attribute = 1
+so the result is the tranduction of
+ pathTo = visa.parameters.list.1 | trans({}, 'notreal')
+ ===> Welcome
+#}
+{%  set domain = attributeOptions['transOption']['domain'] %}
+{%  set pathTo = attributeOptions['transOption']['pathTo'] %}
+{% if attribute(object, attributeName)  %}
+{{ (pathTo ~ attribute(object, attributeName)) | trans({}, domain)  }}
+{% endif %}

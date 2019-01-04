@@ -1,0 +1,118 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: options.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+#    - { resource: "@SalexUserBundle/Resources/config/services.yml" }
+    - { resource: "@AtsBundle/Resources/config/services.yml" }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+
+framework:
+    #esi:             ~
+    translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments:       ~
+    http_method_override: true
+    assets: ~
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    form_themes:
+        # other form themes
+        - 'VichUploaderBundle:Form:fields.html.twig'
+        - 'bootstrap_3_layout.html.twig'
+    globals:
+        site_name: '%site_name%'
+        footer_url: '%footer_url%'
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+#    orm:
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        # IMPORTANT!
+        auto_mapping: true
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
+        uglifyjs2:
+            # the path to the uglifyjs executable
+            bin: '%kernel.root_dir%/Resources/node_modules/.bin/uglifyjs'
+        uglifycss:
+            # the path to the uglifycss executable
+            bin: '%kernel.root_dir%/Resources/node_modules/.bin/uglifycss'
+knp_menu:
+    # use "twig: false" to disable the Twig extension and the TwigRenderer
+    twig:
+        template: knp_menu.html.twig
+    #  if true, enables the helper for PHP templates
+    templating: false
+    # the renderer to use, list is also available by default
+    default_renderer: twig
+
+# File Uploader Bundle configuration
+#https://github.com/dustin10/VichUploaderBundle/blob/master/Resources/doc/installation.md
+vich_uploader:
+    db_driver: orm # or mongodb or propel or phpcr
+    mappings:
+        profile_image:
+            uri_prefix:         /images/profile
+            upload_destination: '%kernel.root_dir%/../web/images/profile'
+            namer: vich_uploader.namer_origname
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
+#https://github.com/whiteoctober/BreadcrumbsBundle
+white_october_breadcrumbs:
+    separator: ''
+
+avanzu_admin_theme:
+
+knp_paginator:
+    page_range: 5                       # number of links showed in the pagination menu (e.g: you have 10 pages, a page_range of 3, on the 5th page you'll see links to page 4, 5, 6)
+    default_options:
+        page_name: page                 # page query parameter name
+        sort_field_name: sort           # sort field query parameter name
+        sort_direction_name: direction  # sort direction query parameter name
+        distinct: true                  # ensure distinct results, useful when ORM queries are using GROUP BY statements
+        filter_field_name: filterField  # filter field query parameter name
+        filter_value_name: filterValue  # filter value query parameter name
+    template:
+        pagination: '@KnpPaginator/Pagination/sliding.html.twig'     # sliding pagination controls template
+        sortable: '@KnpPaginator/Pagination/sortable_link.html.twig' # sort link template
+        filtration: '@KnpPaginator/Pagination/filtration.html.twig'  # filters template

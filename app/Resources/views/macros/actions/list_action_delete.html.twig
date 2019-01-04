@@ -1,0 +1,11 @@
+<a
+    class="btn btn-sm btn-white delete-object"
+    title="{{ 'core.button.delete'|trans({},'ApplicationCoreBundle') }}"
+    data-toggle="tooltip"
+    rel="tooltip"
+    href="javascript:void(0)"
+    data-url="{{path(key, {'id': obj.id})}}"
+    data-originalconfirm="{{ 'core.message.confirm.delete'|trans({'%obj%':obj},translationDomain) }}"
+    data-csrf-token="{{ path(key, {'id': obj.id})|csrf_token }}" >
+    <i class="fa fa-trash"></i>
+    </a>

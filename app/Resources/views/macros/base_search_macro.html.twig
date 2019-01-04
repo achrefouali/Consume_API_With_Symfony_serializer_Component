@@ -1,0 +1,30 @@
+{% macro search(form,fields=[],action ,formid=null) %}
+    {{ form_start(form, {'method': 'POST', 'action': path(action) }) }}
+        {% set cpt_i =0 %}
+        {% for field in fields %} 
+             {% if cpt_i == 0%}  
+                <div class="row"> 
+             {% endif%}
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                       {{ form_label(attribute(form, field)) }}
+                       {{ form_widget(attribute(form, field) ) }}
+                       {{ form_errors(attribute(form, field)) }} 
+                    </div> 
+                </div>
+               {% set cpt_i = cpt_i+1%}    
+               {% if cpt_i == 3  or fields|length==loop.index %} </div> {% set cpt_i = 0 %}{%endif %}
+         {% endfor %}
+       
+        {{ form_rest(form) }}
+          <div class="row">
+                <div class="m-b-xs  text-center">
+                    <br/>
+                    <button class="btn btn-success" {% if formid is not null %} id="{{formid}}" {%endif %} type="submit">{{ 'Rechercher'|trans({}, 'ApplicationCoreBundle') }}</button>
+                    <button class="btn btn-default" type="submit" name="reset" value="true">{{ 'Reset'|trans({}, 'ApplicationCoreBundle') }}</button>
+
+                </div>
+            </div>
+    </form>
+
+{% endmacro %}
