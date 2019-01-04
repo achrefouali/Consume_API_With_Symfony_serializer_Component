@@ -1,0 +1,7 @@
+services:
+    application_ats_service:
+        class: AtsBundle\Services\AtsServices
+        arguments: ['@doctrine.orm.entity_manager', '@application.crud']
+    application.crud:
+        class: AtsBundle\Services\CrudService
+        arguments: ["@service_container"]

@@ -1,0 +1,78 @@
+{% extends "AtsBundle:Entry:index.html.twig" %}
+{% block page_content %}
+    <div class="box box-primary">
+        <div class="box-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h4>Recherche</h4>
+                        <div class="ibox-tools pull-right">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        {% import '::macros/base_search_macro.html.twig' as  search_macro %}
+                        {{ search_macro.search(filterForm,['title'],'application_post_filter' ) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="box box-primary">
+        <div class=" ibox row">
+            <div class="col-lg-12">
+                <div class="ibox-title">
+                    <h4>Liste des entrées </h4>
+                    <div class="ibox-tools pull-right" >
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content  auf-footer">
+
+                    {% import '::macros/base_list_macro.html.twig' as  list_macro  %}
+                    {% set attributes_array = {
+                        'title':   {'label': 'Titre','sort' : 'asc', 'type' : 'default'},
+                        'category':{'label': 'Categorie','type' : 'default'},
+                        'author':{'label': 'Nom auteur','type' : 'default'},
+                        'feed':{'label': 'Titre du feed','type' : 'default'},
+
+                    }
+                    %}
+                    {{ list_macro.list(post, attributes_array,{},{},'','', '', totalPost )}}
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+{% endblock page_content %}
+
+{% block javascripts %}
+
+    {{parent()}}
+    <script>
+    $(document).ready(function () {
+    $('.collapse-link').click(function () {
+
+    var ibox = $(this).closest('div.ibox');
+    var button = $(this).find('i');
+    var content = ibox.find('div.ibox-content');
+    content.slideToggle(200);
+    button.toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
+    ibox.toggleClass('').toggleClass('border-bottom');
+    setTimeout(function () {
+    ibox.resize();
+    ibox.find('[id^=map-]').resize();
+    }, 50);
+    });
+    })
+</script>
+{% endblock %}

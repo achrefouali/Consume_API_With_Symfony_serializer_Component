@@ -1,0 +1,9 @@
+ats:
+    resource: "@AtsBundle/Resources/config/routing.yml"
+    prefix:   /ats
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+avanzu_admin_profile:
+    path: /profile

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AUF | FOAD {% block title %}{% endblock %}</title>
+    {% block stylesheet %}
+        <link rel="icon" type="image/x-icon" sizes="16x16"
+              href="data:image/png;base64,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"/>
+
+
+
+
+        {#<link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}" />#}
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/custom.css')}}" />
+
+
+
+        {#<link rel="stylesheet" type="text/css" href="{{asset('assets/font-awesome/css/font-awesome.css')}}" />#}
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/iCheck/custom.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/chosen/chosen.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/datapicker/datepicker3.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/select2/select2.min.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/multiselect/css/multi-select.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plugins/toastr/toastr.min.css') }}" />
+        {#<link href="{{ asset('assets/js/ApplicationQuizBundle/bower_components/angular-toastr/dist/angular-toastr.css') }}" rel="stylesheet" type="text/css"/>#}
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plugins/switchery/switchery.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/multiselect/css/multi-select.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/plugins/jqueryLoader/jquery.loader.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/js/plugins/slick/slick.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/js/plugins/slick/slick-theme.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/animate.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}" />
+        {#<link rel="stylesheet" type="text/css" href="{{asset('assets/css/style_responsive.css')}}" />#}
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}" />
+        {#<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">#}
+        {#<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">#}
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css')}}" />
+
+        <link rel="stylesheet" href="{{asset('build/css/app.css')}}">
+
+
+    {% endblock %}
+    <script src="{{ asset('assets/js/jquery-2.1.1.js') }}"></script>
+    <script type="text/javascript">
+        function resizeIframe(obj) {
+            obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+        }
+    </script>
+</head>
+<body onload="checkIsLogged()">
+
+{#<div id="wrapper">#}
+<div class="wrapper">
+    {% block navbars %}
+        <!-- navbar on the left side -->
+        {% include 'navbar_left.html.twig' %}
+        <!-- ./navbar on the left side -->
+        <!-- navbar on the top side -->
+        <div class="container-zone">
+        {% include 'navbar_top.html.twig' %}
+        <!-- navbar on responsive mobile -->
+        {#{% include 'navbar-responsive.html.twig' %}#}
+        <!-- menu on responsive mobile -->
+        {#{% include 'mobile-menu.html.twig' %}#}
+        {#<div id="content">#}
+    {% endblock %}
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+
+        {% block page_title_header %}
+        <!-- ./navbar on the top side -->
+        <!--<div class="row wrapper border-bottom white-bg page-heading">-->
+        <div>
+            <div class="col-sm-6">
+                <span class="page_title">{% block page_title %} {{ 'core.menu.dashboard'|trans({},'ApplicationCoreBundle') }} {% endblock %}</span>
+            </div>
+        </div>
+        {% endblock %}
+
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p> Sure??? message </p>
+                    </div>
+                    <div class="modal-footer">
+                        <a type="button" class="btn btn-primary btn-width" id="dataConfirmOK"><i
+                                    class="fa fa-check"></i>Valider</a>
+                        <button type="button" class="btn btn-default btn-btm" data-dismiss="modal"><i
+                                    class="fa fa-times"></i>Annuler
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="myModalIframe" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">&times;
+                        </button>
+                        <h4 class="modal-title"><span class="iframe-title"></span> &nbsp; &nbsp;<span class="spinner"><i
+                                        class="fa fa-refresh fa-spin"></i></span></h4>
+                    </div>
+                    <div class="modal-body">
+                        <iframe id="modal_ifram" src="" width="100%" scrolling="no" onload="resizeIframe(this)"
+                                frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% block flash_message %}
+            {# Success flash messages#}
+            {% if app.session.flashBag.has('success_action') %}
+                <div id="toast-container" class="toast-top-right" aria-live="polite" role="alert">
+                    <div class="toast toast-success">
+                        <button type="button" class="toast-close-button" role="button">×</button>
+                        {% for msg in app.session.flashBag.get('success_action') %}
+                            <div class="toast-message">  {{ msg|raw }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            {# Error flash messages#}
+            {% if app.session.flashBag.has('error_action') %}
+                <div id="toast-container" class="toast-top-right" aria-live="polite" role="alert">
+                    <div class="toast toast-error">
+                        <button type="button" class="toast-close-button" role="button">×</button>
+                        {% for msg in app.session.flashBag.get('error_action') %}
+                            <div class="toast-message">  {{ msg|raw }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endblock %}
+
+        {% block body %}
+        {% endblock %}
+        <!-- footer -->
+        {#{% include 'footer.html.twig' %}#}
+        <!-- ./ footer -->
+    </div>
+    </div>
+</div>
+
+<div id="loading">
+    <div class="spinner-ajax-load">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</div>
+{% block javascripts %}
+    {% set environ = (app.environment == "dev")?'/app_dev.php': '' %}
+    <script src="{{ asset('assets/js/angular.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-2.1.1.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    {#<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>#}
+    <script src="{{ asset('assets/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/slick/slick.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/Application/init_function.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/chosen/chosen.jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-ui-1.10.4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/iCheck/icheck.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/datapicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('assets/js/multiselect/js/jquery.multi-select.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/switchery/switchery.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/hightcharts/highcharts.js') }}"></script>
+    {#<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.5/Chart.min.js"></script>#}
+    <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/jqueryLoader/jquery.loader.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/validate/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/validate/messages_fr.js') }}"></script>
+    <script src="{{ asset('assets/js/multiselect/js/jquery.multi-select.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/dropezone/jQuery.MultiFile.min.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    {#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>#}
+    <script src="{{ asset('assets/js/jquery.sparkline.min.js') }}"></script>
+    <script src="{{ asset('build/js/app.js') }}"></script>
+
+
+    <script language="JavaScript">
+        function ajaxLoad(){
+            $(document).ajaxStart(function() {
+                $("#loading").show();
+            }).ajaxStop(function() {
+                $("#loading").hide();
+            });
+        }
+        function checkIsLogged() {
+            var url = "{{ auf['si']['url'] ~ '/api/user/'~ app.user.id ~ '.json?access_token=' ~ app.session.get('_security.api_access_token') }}";
+            //console.log(url);
+            $.get( url  )
+                .done(function( data ) {
+                    if(!data.hasOwnProperty('code')){
+                        var isSILogged = data['users'][0]['isSILogged'];
+                        var si_login_token = data['users'][0]['si_login_token'];
+
+                        if(isSILogged == true || si_login_token == 'undefined'){
+                            console.log('Bienvenue {{ app.user.firstname }}');
+                        }else {
+                            window.location = "{{ path('logout') }}";
+                        }
+                    }
+                });
+            //setTimeout( isLogged, 1000 );
+        }
+        $(document).ready(function () {
+            ajaxLoad()
+            $('.date').after("<i class='icon-calendar fa fa-calendar'></i>")
+        })
+
+    </script>
+{% endblock %}
+
+</body>
+</html>

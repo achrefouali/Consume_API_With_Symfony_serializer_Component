@@ -1,0 +1,9 @@
+{% if attribute(object, attributeName) is iterable %}
+
+        {% for item in attribute(object, attributeName) %}
+            <span> {{item }}</span>
+            {% endfor %}
+ 
+{% else %}
+    {{ attribute(object, attributeName)   }}
+{%endif %}

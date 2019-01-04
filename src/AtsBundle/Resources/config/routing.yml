@@ -1,0 +1,6 @@
+application_post_list:
+    path:     /list
+    defaults: { _controller: AtsBundle:Entry:list}
+application_post_filter:
+    path:     /filter
+    defaults: { _controller: AtsBundle:Entry:filter}
