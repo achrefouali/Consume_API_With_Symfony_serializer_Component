@@ -28,7 +28,7 @@ class SidebarListener
     {
         $earg      = array();
         $rootItems = array(
-            $dash = new MenuItemModel('dashboard', 'Gestion des entrées', 'homepage', $earg, 'fa fa-dashboard'),
+            $dash = new MenuItemModel('dashboard', 'Gestion des entrées', 'application_post_list', $earg, 'fa fa-dashboard'),
         );
         return $this->activateByRoute($request->get('_route'), $rootItems);
 
